@@ -108,6 +108,8 @@ class CipherCycleSpecification extends Specification {
         -2     | "c"     || "a"
         1      | "f"     || "a"
         -1     | "a"     || "f"
+        -10    | "a"     || "c"
+        10     | "d"     || "b"
     }
 
 }
