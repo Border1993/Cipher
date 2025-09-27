@@ -62,7 +62,7 @@ public class CipherCycle {
             }
             current = current.getNext();
         }
-        throw new ElementNotFoundException(valueToFind.toString());
+        throw new ElementNotFoundException("Element: " + valueToFind + " not found.");
     }
 
     public String shift(String valueToShift, int shiftValue) {

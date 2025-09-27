@@ -6,15 +6,15 @@ import spock.lang.Specification
 class CipherCycleSpecification extends Specification {
     def "list returns size of 0 when it's empty"() {
         given:
-        def list = new CipherCycle();
+        def list = new CipherCycle()
 
         expect:
-        list.size() == 0;
+        list.size() == 0
     }
 
     def "size grows after adding single element to the list"() {
         given:
-        def list = new CipherCycle<String>();
+        def list = new CipherCycle()
 
         when:
         list.add("a")
@@ -25,7 +25,7 @@ class CipherCycleSpecification extends Specification {
 
     def "get returns first element"() {
         given:
-        def list = new CipherCycle<String>();
+        def list = new CipherCycle()
 
         when:
         list.add("a")
@@ -36,7 +36,7 @@ class CipherCycleSpecification extends Specification {
 
     def "list retains all elements in order"() {
         given:
-        def list = new CipherCycle<String>();
+        def list = new CipherCycle()
 
         when:
         list.add("a")
@@ -51,7 +51,7 @@ class CipherCycleSpecification extends Specification {
 
     def "addAll adds multiple elements at the same time in given order"() {
         given:
-        def list = new CipherCycle<String>();
+        def list = new CipherCycle()
 
         when:
         list.addAll("a", "b", "c")
@@ -64,7 +64,7 @@ class CipherCycleSpecification extends Specification {
 
     def "shift method shifts character by given amount"() {
         given:
-        def list = new CipherCycle<String>("a", "b", "c", "d", "e", "f")
+        def list = new CipherCycle("a", "b", "c", "d", "e", "f")
 
         when:
         def shiftedCharacter = list.shift(initial, amount)
