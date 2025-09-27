@@ -17,7 +17,7 @@ class CyclicListSpecification extends Specification {
         def list = new CyclicList()
 
         expect:
-        list.isEmpty();
+        list.isEmpty()
     }
 
     def "size grows after adding single element to the list"() {
@@ -29,5 +29,16 @@ class CyclicListSpecification extends Specification {
 
         then:
         list.size() == 1
+    }
+
+    def "list returns false when not empty"() {
+        given:
+        def list = new CyclicList()
+
+        when:
+        list.add(1)
+
+        then:
+        !list.isEmpty()
     }
 }
