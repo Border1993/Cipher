@@ -8,9 +8,14 @@ public class CipherCycle {
     private Node firstElementInCycle = null;
     private Node lastElementInCycle = null;
 
-    public CipherCycle() {
+    CipherCycle() {
     }
 
+    /**
+     * Creates cipher with provided characters.
+     *
+     * @param elements characters of the cipher.
+     */
     public CipherCycle(String... elements) {
         addAll(elements);
     }
@@ -65,6 +70,13 @@ public class CipherCycle {
         throw new ElementNotFoundException("Element: " + valueToFind + " not found.");
     }
 
+    /**
+     * Shifts character by provided amount of characters.
+     *
+     * @param valueToShift character to shift.
+     * @param shiftValue   amount of characters to shift. Can be negative.
+     * @return shifted character.
+     */
     public String shift(String valueToShift, int shiftValue) {
         Node currentNode = find(valueToShift);
         final int elementsToShift = Math.abs(shiftValue);

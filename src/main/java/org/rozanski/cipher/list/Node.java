@@ -1,7 +1,7 @@
 package org.rozanski.cipher.list;
 
-public class Node {
-    private String value;
+class Node {
+    private final String value;
     private Node next;
     private Node previous;
 
