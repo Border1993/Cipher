@@ -20,8 +20,14 @@ class CyclicListSpecification extends Specification {
         list.isEmpty();
     }
 
+    def "size grows after adding single element to the list"() {
+        given:
+        def list = new CyclicList<String>();
 
+        when:
+        list.add("a");
 
-
-
+        then:
+        list.size() == 1
+    }
 }
