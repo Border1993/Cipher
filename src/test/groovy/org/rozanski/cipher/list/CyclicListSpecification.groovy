@@ -20,17 +20,6 @@ class CyclicListSpecification extends Specification {
         list.isEmpty()
     }
 
-    def "size grows after adding single element to the list"() {
-        given:
-        def list = new CyclicList<String>();
-
-        when:
-        list.add("a");
-
-        then:
-        list.size() == 1
-    }
-
     def "list returns false when not empty"() {
         given:
         def list = new CyclicList()
@@ -41,4 +30,26 @@ class CyclicListSpecification extends Specification {
         then:
         !list.isEmpty()
     }
+
+    def "size grows after adding single element to the list"() {
+        given:
+        def list = new CyclicList<String>();
+
+        when:
+        list.add("a")
+
+        then:
+        list.size() == 1
+    }
+
+    def "add returns true on success"() {
+        given:
+        def list = new CyclicList<String>();
+
+        expect:
+        list.add("a")
+    }
+
+
+
 }

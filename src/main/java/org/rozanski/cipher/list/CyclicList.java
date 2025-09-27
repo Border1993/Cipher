@@ -41,7 +41,7 @@ public class CyclicList<T> implements List<T> {
     @Override
     public boolean add(T t) {
         size ++;
-        return false;
+        return true;
     }
 
     @Override
