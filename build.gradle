@@ -25,6 +25,7 @@ repositories {
 }
 
 dependencies {
+    // TODO(rozanski): verify if this is needed.
     implementation 'org.apache.groovy:groovy:4.0.24'
     implementation 'org.spockframework:spock-core:2.4-M6-groovy-4.0'
 }
