@@ -89,4 +89,21 @@ class CipherCycleSpecification extends Specification {
         list.get(2) == "c"
     }
 
+    def "shift method shifts character by given amount"() {
+        given:
+        def list = new CipherCycle<String>("a", "b", "c", "d", "e", "f");
+
+        when:
+        def shiftedCharacter = list.shift("b", amount)
+
+        then:
+        shiftedCharacter == result
+
+        where:
+        amount || result
+        1      || "c"
+        2      || "d"
+        3      || "e"
+    }
+
 }

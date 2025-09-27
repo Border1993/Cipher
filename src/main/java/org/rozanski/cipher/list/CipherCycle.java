@@ -4,15 +4,22 @@ public class CipherCycle<T> {
     private int size = 0;
     private Node<T> firstElementInChain = null;
 
-    public int size() {
+    public CipherCycle() {
+    }
+
+    public CipherCycle(T... elements) {
+        addAll(elements);
+    }
+
+    int size() {
         return size;
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return size == 0;
     }
 
-    public boolean add(T t) {
+    boolean add(T t) {
         final Node<T> newElement = new Node<>(t);
 
         if (firstElementInChain == null) {
@@ -32,7 +39,7 @@ public class CipherCycle<T> {
         return current;
     }
 
-    public T get(int index) {
+    T get(int index) {
         Node<T> current = firstElementInChain;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
@@ -40,9 +47,28 @@ public class CipherCycle<T> {
         return current.getValue();
     }
 
-    public void addAll(T... elements) {
+    void addAll(T... elements) {
         for (T element : elements) {
             add(element);
         }
+    }
+
+    private Node<T> find(T valueToFind) {
+        Node<T> current = firstElementInChain;
+        while (current != null) {
+            if (current.getValue().equals(valueToFind)) {
+                return current;
+            }
+            current = current.getNext();
+        }
+        throw new ElementNotFoundException(valueToFind.toString());
+    }
+
+    public T shift(T valueToShift, int shiftValue) {
+        Node<T> currentNode = find(valueToShift);
+        for (int i = 0; i < shiftValue; i++) {
+            currentNode = currentNode.getNext();
+        }
+        return currentNode.getValue();
     }
 }
