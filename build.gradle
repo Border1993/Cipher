@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'groovy'
+}
+
+group = 'org.rozanski'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {17}
+}
+
+sourceSets {
+    main {
+        java { srcDirs = ["src/main/java"] }
+    }
+
+    test {
+        groovy { srcDirs = ["src/test/groovy"] }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.groovy:groovy:4.0.24'
+    implementation 'org.spockframework:spock-core:2.4-M6-groovy-4.0'
+}
+
+test {
+    useJUnitPlatform()
+}
