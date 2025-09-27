@@ -1,6 +1,6 @@
 package org.rozanski.cipher.list;
 
-public class CyclicList<T> {
+public class CipherCycle<T> {
     private int size = 0;
     private Node<T> firstElementInChain = null;
 

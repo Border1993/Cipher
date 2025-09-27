@@ -3,10 +3,10 @@ package org.rozanski.cipher.list
 import spock.lang.Specification
 
 
-class CyclicListSpecification extends Specification {
+class CipherCycleSpecification extends Specification {
     def "list returns size of 0 when it's empty"() {
         given:
-        def list = new CyclicList();
+        def list = new CipherCycle();
 
         expect:
         list.size() == 0;
@@ -14,7 +14,7 @@ class CyclicListSpecification extends Specification {
 
     def "list returns true when empty"() {
         given:
-        def list = new CyclicList()
+        def list = new CipherCycle()
 
         expect:
         list.isEmpty()
@@ -22,7 +22,7 @@ class CyclicListSpecification extends Specification {
 
     def "list returns false when not empty"() {
         given:
-        def list = new CyclicList()
+        def list = new CipherCycle()
 
         when:
         list.add(1)
@@ -33,7 +33,7 @@ class CyclicListSpecification extends Specification {
 
     def "size grows after adding single element to the list"() {
         given:
-        def list = new CyclicList<String>();
+        def list = new CipherCycle<String>();
 
         when:
         list.add("a")
@@ -44,7 +44,7 @@ class CyclicListSpecification extends Specification {
 
     def "add returns true on success"() {
         given:
-        def list = new CyclicList<String>();
+        def list = new CipherCycle<String>();
 
         expect:
         list.add("a")
@@ -52,7 +52,7 @@ class CyclicListSpecification extends Specification {
 
     def "get returns first element"() {
         given:
-        def list = new CyclicList<String>();
+        def list = new CipherCycle<String>();
 
         when:
         list.add("a")
@@ -63,7 +63,7 @@ class CyclicListSpecification extends Specification {
 
     def "list retains all elements in order"() {
         given:
-        def list = new CyclicList<String>();
+        def list = new CipherCycle<String>();
 
         when:
         list.add("a")
