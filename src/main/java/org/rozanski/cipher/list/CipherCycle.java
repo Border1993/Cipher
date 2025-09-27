@@ -25,7 +25,9 @@ public class CipherCycle<T> {
         if (firstElementInChain == null) {
             firstElementInChain = newElement;
         } else {
-            findLastElementInAChain().setNext(newElement);
+            final Node<T> lastElement = findLastElementInAChain();
+            lastElement.setNext(newElement);
+            newElement.setPrevious(lastElement);
         }
         size++;
         return true;
@@ -66,9 +68,18 @@ public class CipherCycle<T> {
 
     public T shift(T valueToShift, int shiftValue) {
         Node<T> currentNode = find(valueToShift);
-        for (int i = 0; i < shiftValue; i++) {
-            currentNode = currentNode.getNext();
+        int elementsToShift = Math.abs(shiftValue);
+
+        if (shiftValue > 0) {
+            for (int i = 0; i < elementsToShift; i++) {
+                currentNode = currentNode.getNext();
+            }
+        } else if (shiftValue < 0) {
+            for (int i = 0; i < elementsToShift; i++) {
+                currentNode = currentNode.getPrevious();
+            }
         }
+
         return currentNode.getValue();
     }
 }
