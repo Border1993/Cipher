@@ -1,14 +1,17 @@
 package org.rozanski.cipher.list;
 
-public class CipherCycle<T> {
+/**
+ * Cycle of elements for cipher. Effectively a bidirectional cyclic list.
+ */
+public class CipherCycle {
     private int size = 0;
-    private Node<T> firstElementInCycle = null;
-    private Node<T> lastElementInCycle = null;
+    private Node firstElementInCycle = null;
+    private Node lastElementInCycle = null;
 
     public CipherCycle() {
     }
 
-    public CipherCycle(T... elements) {
+    public CipherCycle(String... elements) {
         addAll(elements);
     }
 
@@ -16,9 +19,8 @@ public class CipherCycle<T> {
         return size;
     }
 
-    void add(T t) {
-        final Node<T> newElement = new Node<>(t);
-
+    void add(String element) {
+        final Node newElement = new Node(element);
         if (firstElementInCycle == null) {
             firstElementInCycle = newElement;
             lastElementInCycle = newElement;
@@ -38,22 +40,22 @@ public class CipherCycle<T> {
         size++;
     }
 
-    T get(int index) {
-        Node<T> current = firstElementInCycle;
+    String get(int index) {
+        Node current = firstElementInCycle;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
         return current.getValue();
     }
 
-    void addAll(T... elements) {
-        for (T element : elements) {
+    void addAll(String... elements) {
+        for (String element : elements) {
             add(element);
         }
     }
 
-    private Node<T> find(T valueToFind) {
-        Node<T> current = firstElementInCycle;
+    private Node find(String valueToFind) {
+        Node current = firstElementInCycle;
         while (current != null) {
             if (current.getValue().equals(valueToFind)) {
                 return current;
@@ -63,9 +65,9 @@ public class CipherCycle<T> {
         throw new ElementNotFoundException(valueToFind.toString());
     }
 
-    public T shift(T valueToShift, int shiftValue) {
-        Node<T> currentNode = find(valueToShift);
-        int elementsToShift = Math.abs(shiftValue);
+    public String shift(String valueToShift, int shiftValue) {
+        Node currentNode = find(valueToShift);
+        final int elementsToShift = Math.abs(shiftValue);
 
         if (shiftValue > 0) {
             for (int i = 0; i < elementsToShift; i++) {
