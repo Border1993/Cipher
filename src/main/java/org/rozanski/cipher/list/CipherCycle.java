@@ -16,10 +16,6 @@ public class CipherCycle<T> {
         return size;
     }
 
-    boolean isEmpty() {
-        return size == 0;
-    }
-
     boolean add(T t) {
         final Node<T> newElement = new Node<>(t);
 

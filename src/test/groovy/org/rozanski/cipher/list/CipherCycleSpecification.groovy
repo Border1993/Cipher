@@ -12,25 +12,6 @@ class CipherCycleSpecification extends Specification {
         list.size() == 0;
     }
 
-    def "list returns true when empty"() {
-        given:
-        def list = new CipherCycle()
-
-        expect:
-        list.isEmpty()
-    }
-
-    def "list returns false when not empty"() {
-        given:
-        def list = new CipherCycle()
-
-        when:
-        list.add(1)
-
-        then:
-        !list.isEmpty()
-    }
-
     def "size grows after adding single element to the list"() {
         given:
         def list = new CipherCycle<String>();
@@ -111,5 +92,4 @@ class CipherCycleSpecification extends Specification {
         -10    | "a"     || "c"
         10     | "d"     || "b"
     }
-
 }
