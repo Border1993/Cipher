@@ -39,4 +39,10 @@ public class CipherCycle<T> {
         }
         return current.getValue();
     }
+
+    public void addAll(T... elements) {
+        for (T element : elements) {
+            add(element);
+        }
+    }
 }

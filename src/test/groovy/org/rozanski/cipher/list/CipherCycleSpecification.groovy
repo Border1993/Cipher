@@ -76,4 +76,17 @@ class CipherCycleSpecification extends Specification {
         list.get(2) == "c"
     }
 
+    def "addAll adds multiple elements at the same time in given order"() {
+        given:
+        def list = new CipherCycle<String>();
+
+        when:
+        list.addAll("a", "b", "c")
+
+        then:
+        list.get(0) == "a"
+        list.get(1) == "b"
+        list.get(2) == "c"
+    }
+
 }
