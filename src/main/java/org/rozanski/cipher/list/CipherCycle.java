@@ -2,7 +2,8 @@ package org.rozanski.cipher.list;
 
 public class CipherCycle<T> {
     private int size = 0;
-    private Node<T> firstElementInChain = null;
+    private Node<T> firstElementInCycle = null;
+    private Node<T> lastElementInCycle = null;
 
     public CipherCycle() {
     }
@@ -22,27 +23,28 @@ public class CipherCycle<T> {
     boolean add(T t) {
         final Node<T> newElement = new Node<>(t);
 
-        if (firstElementInChain == null) {
-            firstElementInChain = newElement;
+        if (firstElementInCycle == null) {
+            firstElementInCycle = newElement;
+            lastElementInCycle = newElement;
+            newElement.setNext(newElement);
+            newElement.setPrevious(newElement);
         } else {
-            final Node<T> lastElement = findLastElementInAChain();
-            lastElement.setNext(newElement);
-            newElement.setPrevious(lastElement);
+            // Join former last element with new one
+            lastElementInCycle.setNext(newElement);
+            newElement.setPrevious(lastElementInCycle);
+
+            // Join first element with new one
+            firstElementInCycle.setPrevious(newElement);
+            newElement.setNext(firstElementInCycle);
+
+            lastElementInCycle = newElement;
         }
         size++;
         return true;
     }
 
-    private Node<T> findLastElementInAChain() {
-        Node<T> current = firstElementInChain;
-        while (current.getNext() != null) {
-            current = current.getNext();
-        }
-        return current;
-    }
-
     T get(int index) {
-        Node<T> current = firstElementInChain;
+        Node<T> current = firstElementInCycle;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
@@ -56,7 +58,7 @@ public class CipherCycle<T> {
     }
 
     private Node<T> find(T valueToFind) {
-        Node<T> current = firstElementInChain;
+        Node<T> current = firstElementInCycle;
         while (current != null) {
             if (current.getValue().equals(valueToFind)) {
                 return current;
