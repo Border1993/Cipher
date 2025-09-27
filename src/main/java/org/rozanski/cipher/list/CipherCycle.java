@@ -16,7 +16,7 @@ public class CipherCycle<T> {
         return size;
     }
 
-    boolean add(T t) {
+    void add(T t) {
         final Node<T> newElement = new Node<>(t);
 
         if (firstElementInCycle == null) {
@@ -36,7 +36,6 @@ public class CipherCycle<T> {
             lastElementInCycle = newElement;
         }
         size++;
-        return true;
     }
 
     T get(int index) {

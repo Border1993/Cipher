@@ -23,14 +23,6 @@ class CipherCycleSpecification extends Specification {
         list.size() == 1
     }
 
-    def "add returns true on success"() {
-        given:
-        def list = new CipherCycle<String>();
-
-        expect:
-        list.add("a")
-    }
-
     def "get returns first element"() {
         given:
         def list = new CipherCycle<String>();
