@@ -7,6 +7,7 @@ import java.util.ListIterator;
 
 public class CyclicList<T> implements List<T> {
     private int size = 0;
+    private T element = null;
 
     @Override
     public int size() {
@@ -40,6 +41,7 @@ public class CyclicList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
+        element = t;
         size ++;
         return true;
     }
@@ -81,7 +83,7 @@ public class CyclicList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        return element;
     }
 
     @Override

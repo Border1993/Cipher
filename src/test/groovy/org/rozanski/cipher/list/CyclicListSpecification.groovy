@@ -50,6 +50,15 @@ class CyclicListSpecification extends Specification {
         list.add("a")
     }
 
+    def "get returns first element"() {
+        given:
+        def list = new CyclicList<String>();
 
+        when:
+        list.add("a")
+
+        then:
+        list.get(0) == "a"
+    }
 
 }
