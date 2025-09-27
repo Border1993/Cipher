@@ -1,0 +1,32 @@
+package org.rozanski.cipher;
+
+import org.rozanski.cipher.list.CipherCycle;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+
+/**
+ * Encoder for strings. Transforms each character according to cipher cycle rules and character shift count.
+ */
+class Encoder {
+    private final CipherCycle cipherCycle;
+
+    Encoder(CipherCycle cipherCycle) {
+        this.cipherCycle = cipherCycle;
+    }
+
+    /**
+     * Encodes provided string.
+     *
+     * @param textToShift text to be encoded.
+     * @param shift       amount of characters to be shifted.
+     * @return encoded string.
+     */
+    public String encode(String textToShift, int shift) {
+        return Arrays.stream(textToShift.split(""))
+                .filter(c -> !c.isBlank())
+                .map(c -> cipherCycle.shift(c, shift))
+                .collect(Collectors.joining());
+    }
+}
