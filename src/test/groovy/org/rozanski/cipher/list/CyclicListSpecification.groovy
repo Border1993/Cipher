@@ -12,6 +12,16 @@ class CyclicListSpecification extends Specification {
         list.size() == 0;
     }
 
+    def "list returns true when empty"() {
+        given:
+        def list = new CyclicList()
+
+        expect:
+        list.isEmpty();
+    }
+
+
+
 
 
 }

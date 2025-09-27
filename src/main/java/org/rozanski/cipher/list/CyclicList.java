@@ -14,7 +14,7 @@ public class CyclicList<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return true;
     }
 
     @Override
