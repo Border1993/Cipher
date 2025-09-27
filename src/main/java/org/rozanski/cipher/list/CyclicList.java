@@ -7,7 +7,7 @@ import java.util.ListIterator;
 
 public class CyclicList<T> implements List<T> {
     private int size = 0;
-    private T element = null;
+    private Node<T> firstElementInChain = null;
 
     @Override
     public int size() {
@@ -41,9 +41,23 @@ public class CyclicList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        element = t;
-        size ++;
+        final Node<T> newElement = new Node<>(t);
+
+        if (firstElementInChain == null) {
+            firstElementInChain = newElement;
+        } else {
+            findLastElementInAChain().setNext(newElement);
+        }
+        size++;
         return true;
+    }
+
+    private Node<T> findLastElementInAChain() {
+        Node<T> current = firstElementInChain;
+        while (current.getNext() != null) {
+            current = current.getNext();
+        }
+        return current;
     }
 
     @Override
@@ -83,7 +97,11 @@ public class CyclicList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        return element;
+        Node<T> current = firstElementInChain;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+        return current.getValue();
     }
 
     @Override

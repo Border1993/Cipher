@@ -61,4 +61,19 @@ class CyclicListSpecification extends Specification {
         list.get(0) == "a"
     }
 
+    def "list retains all elements in order"() {
+        given:
+        def list = new CyclicList<String>();
+
+        when:
+        list.add("a")
+        list.add("b")
+        list.add("c")
+
+        then:
+        list.get(0) == "a"
+        list.get(1) == "b"
+        list.get(2) == "c"
+    }
+
 }
