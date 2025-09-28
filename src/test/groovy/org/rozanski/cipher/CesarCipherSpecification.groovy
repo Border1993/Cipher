@@ -16,4 +16,16 @@ class CesarCipherSpecification extends Specification {
         result == "ymjwj nx st xutts"
     }
 
+    def "Cipher decodes the message"() {
+        given:
+        def message = "ymjwj nx st xutts"
+        def cipher = new CesarCipher(Alphabet.LOWER_CASE_ENGLISH, 5)
+
+        when:
+        def result = cipher.decode(message)
+
+        then:
+        result == "there is no spoon"
+    }
+
 }

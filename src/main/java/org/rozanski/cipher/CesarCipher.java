@@ -7,12 +7,14 @@ import org.rozanski.cipher.list.CipherCycle;
  */
 public class CesarCipher {
     private final Encoder encoder;
+    private final Decoder decoder;
     private final int shift;
 
     public CesarCipher(Alphabet alphabet, int shift) {
         this.shift = shift;
         CipherCycle cipherCycle = CipherCycle.getDefault(alphabet.getCharacters());
         this.encoder = new Encoder(cipherCycle);
+        this.decoder = new Decoder(cipherCycle);
     }
 
     /**
@@ -23,5 +25,15 @@ public class CesarCipher {
      */
     public String encode(String textToEncode) {
         return encoder.encode(textToEncode, shift);
+    }
+
+    /**
+     * Decodes given text.
+     *
+     * @param textToDecode text to be decoded.
+     * @return decoded text.
+     */
+    public String decode(String textToDecode) {
+        return decoder.decode(textToDecode, shift);
     }
 }
