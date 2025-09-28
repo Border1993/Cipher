@@ -28,4 +28,18 @@ class CesarCipherSpecification extends Specification {
         result == "there is no spoon"
     }
 
+    def "Previously encoded message can be decoded"() {
+        given:
+        def message = "there is no spoon"
+        def cipher = new CesarCipher(Alphabet.LOWER_CASE_ENGLISH, 5)
+
+        when:
+        def encoded = cipher.encode(message)
+        def decoded = cipher.decode(encoded)
+
+        then:
+        encoded == "ymjwj nx st xutts"
+        decoded == message
+    }
+
 }
