@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
  * Decoder for strings.Transforms each character according to cipher cycle rules and character shift count.
  */
 public class Decoder {
+    public static final String WHITESPACE_SYMBOL = " ";
     private final CipherCycle cipherCycle;
 
     public Decoder(CipherCycle cipherCycle) {
@@ -24,8 +25,8 @@ public class Decoder {
      */
     public String decode(String encodedText, int encodingShift) {
         return Arrays.stream(encodedText.split(""))
-                .filter(c -> !c.isBlank())
-                .map(c -> cipherCycle.shift(c, -encodingShift))
+                .filter(c -> !c.isBlank() || c.equals(" "))
+                .map(c -> c.equals(WHITESPACE_SYMBOL) ? " " : cipherCycle.shift(c, -encodingShift))
                 .collect(Collectors.joining());
     }
 }

@@ -40,4 +40,20 @@ class DecoderSpecification extends Specification {
         then:
         encodedText == "aaabbc"
     }
+
+    def "spaces are preserved"() {
+        given:
+        def text = "a a"
+        def shift = 2;
+        CipherCycle cipherCycle = Stub()
+        @Subject
+        def decoder = new Decoder(cipherCycle)
+        cipherCycle.shift("a", -2) >> "y"
+
+        when:
+        def encodedText = decoder.decode(text, shift)
+
+        then:
+        encodedText == "y y"
+    }
 }
