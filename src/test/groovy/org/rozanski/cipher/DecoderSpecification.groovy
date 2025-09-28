@@ -56,4 +56,20 @@ class DecoderSpecification extends Specification {
         then:
         encodedText == "y y"
     }
+
+    def "new line sign is preserved"() {
+        given:
+        def text = "a\na"
+        def shift = 2;
+        CipherCycle cipherCycle = Stub()
+        @Subject
+        def decoder = new Decoder(cipherCycle)
+        cipherCycle.shift("a", -2) >> "y"
+
+        when:
+        def encodedText = decoder.decode(text, shift)
+
+        then:
+        encodedText == "y\ny"
+    }
 }
