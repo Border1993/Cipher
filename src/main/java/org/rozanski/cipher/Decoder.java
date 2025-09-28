@@ -24,7 +24,7 @@ public class Decoder {
      */
     public String decode(String encodedText, int encodingShift) {
         return Arrays.stream(encodedText.split(""))
-                .filter(c -> !c.isEmpty())
+                .filter(c -> !c.isEmpty()) //The split will produce empty string at the beginning.
                 .map(c -> c.isBlank() ? c : cipherCycle.shift(c, -encodingShift))
                 .collect(Collectors.joining());
     }
