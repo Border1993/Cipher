@@ -25,8 +25,8 @@ class Encoder {
      */
     public String encode(String textToEncode, int shift) {
         return Arrays.stream(textToEncode.split(""))
-                .filter(c -> !c.isBlank()) //The split will produce empty string at the beginning.
-                .map(c -> cipherCycle.shift(c, shift))
+                .filter(c -> !c.isEmpty()) //The split will produce empty string at the beginning.
+                .map(c -> c.isBlank() ? c : cipherCycle.shift(c, shift))
                 .collect(Collectors.joining());
     }
 }

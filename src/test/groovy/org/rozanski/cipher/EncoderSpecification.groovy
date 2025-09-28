@@ -40,4 +40,36 @@ class EncoderSpecification extends Specification {
         encodedText == "cccdde"
     }
 
+    def "spaces are preserved"() {
+        given:
+        def text = "a a"
+        def shift = 2;
+        CipherCycle cipherCycle = Stub()
+        @Subject
+        def encoder = new Encoder(cipherCycle)
+        cipherCycle.shift("a", 2) >> "c"
+
+        when:
+        def encodedText = encoder.encode(text, shift)
+
+        then:
+        encodedText == "c c"
+    }
+
+    def "new line sign is preserved"() {
+        given:
+        def text = "a\na"
+        def shift = 2;
+        CipherCycle cipherCycle = Stub()
+        @Subject
+        def encoder = new Encoder(cipherCycle)
+        cipherCycle.shift("a", 2) >> "c"
+
+        when:
+        def encodedText = encoder.encode(text, shift)
+
+        then:
+        encodedText == "c\nc"
+    }
+
 }
