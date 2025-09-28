@@ -17,6 +17,15 @@ public class CesarCipher {
         this.decoder = new Decoder(cipherCycle);
     }
 
+    public CesarCipher(String alphabetString, int shift) {
+        final Alphabet alphabet = Alphabet.from(alphabetString);
+
+        this.shift = shift;
+        CipherCycle cipherCycle = CipherCycle.getDefault(alphabet.getCharacters());
+        this.encoder = new Encoder(cipherCycle);
+        this.decoder = new Decoder(cipherCycle);
+    }
+
     /**
      * Encodes given text.
      *

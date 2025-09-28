@@ -42,4 +42,18 @@ class CesarCipherSpecification extends Specification {
         decoded == message
     }
 
+    def "Custom alphabets are supported"() {
+        given:
+        def message = "zażółć żółtą jaźń"
+        def cipher = new CesarCipher("aąbcćdeęfghijklłmnńoóprsśtuwyzźż", 5)
+
+        when:
+        def encoded = cipher.encode(message)
+        def decoded = cipher.decode(encoded)
+
+        then:
+        encoded == "bdćtóg ćtóźe ndcs"
+        decoded == message
+    }
+
 }
