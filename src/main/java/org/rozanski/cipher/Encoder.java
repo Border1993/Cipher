@@ -19,12 +19,12 @@ class Encoder {
     /**
      * Encodes provided string.
      *
-     * @param textToShift text to be encoded.
-     * @param shift       amount of characters to be shifted.
+     * @param textToEncode text to be encoded.
+     * @param shift        amount of characters to be shifted.
      * @return encoded string.
      */
-    public String encode(String textToShift, int shift) {
-        return Arrays.stream(textToShift.split(""))
+    public String encode(String textToEncode, int shift) {
+        return Arrays.stream(textToEncode.split(""))
                 .filter(c -> !c.isBlank())
                 .map(c -> cipherCycle.shift(c, shift))
                 .collect(Collectors.joining());
