@@ -1,5 +1,7 @@
 package org.rozanski.cipher.list;
 
+import java.util.List;
+
 /**
  * Cycle of elements for cipher. Effectively a bidirectional cyclic list.
  */
@@ -14,10 +16,20 @@ class CipherCycleImpl implements CipherCycle {
     /**
      * Creates cipher with provided characters.
      *
-     * @param elements characters of the cipher.
+     * @param elements array with characters of the cipher.
      */
     CipherCycleImpl(String... elements) {
         addAll(elements);
+    }
+
+    /**
+     * Creates cipher with provided characters.
+     *
+     * @param elements characters of the cipher.
+     * @implNote groovy doesn't understand varargs.
+     */
+    CipherCycleImpl(List<String> elements) {
+        addAll(elements.toArray(String[]::new));
     }
 
     int size() {
@@ -60,13 +72,16 @@ class CipherCycleImpl implements CipherCycle {
     }
 
     private Node find(String valueToFind) {
-        Node current = firstElementInCycle;
-        while (current != null) {
-            if (current.getValue().equals(valueToFind)) {
-                return current;
-            }
-            current = current.getNext();
+        if (size > 0) {
+            Node current = firstElementInCycle;
+            do {
+                if (current.getValue().equals(valueToFind)) {
+                    return current;
+                }
+                current = current.getNext();
+            } while (current != firstElementInCycle);
         }
+
         throw new ElementNotFoundException("Element: " + valueToFind + " not found.");
     }
 

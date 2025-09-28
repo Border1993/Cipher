@@ -84,4 +84,19 @@ class CipherCycleSpecification extends Specification {
         -10    | "a"     || "c"
         10     | "d"     || "b"
     }
+
+    def "find throws exception when character is not found."() {
+        given:
+        def list = new CipherCycleImpl(elements)
+
+        when:
+        list.shift("z", 2)
+
+        then:
+        thrown(ElementNotFoundException)
+
+        where:
+        elements << [[], ["a"], ["a", "b"], ["a", "b", "c", "d"]]
+
+    }
 }
